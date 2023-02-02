@@ -1,0 +1,40 @@
+.country-cards-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 300px)) ;
+    grid-auto-rows: minmax(300px, auto);
+    gap: 3rem;
+    margin: auto;
+    margin-top: 3rem;
+    justify-content: center;
+    
+}
+
+.card-flag{
+    border-radius: 6px 6px 0 0;
+}
+
+
+.country-card{
+    background-color: white;
+    box-shadow: 0px 4px 10px rgba(145, 145, 145, 0.253);
+    border-radius: 6px;
+}
+
+.card-text-container{
+    padding: 1.5rem;
+}
+
+.card-country-name{
+    font-size: 1.2rem;
+}
+
+.card-text{
+    font-size: .9rem;
+    font-weight: 600;
+    display: flex;
+    gap: .2rem;
+
+    &--bold{
+        font-weight: 900;
+    }
+}
