@@ -1,3 +1,5 @@
+@use '../mixins/responsive.scss' as *;
+
 .main{
     padding-left: 70px;
     padding-right: 70px;
@@ -8,7 +10,14 @@
 .form{
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
+
+    @include responsive(laptop) {
+        flex-direction: row;
+    }
 }
+
+
 
 .search-container{
     display: flex;
@@ -16,29 +25,40 @@
     gap: 1rem;
     font-size: .9rem;
     height: 2.8rem;
-    padding-right: 6rem;
+    padding-right: 1.5rem;
     padding-left: 1.5rem;
-    box-shadow: 0px 4px 10px rgba(145, 145, 145, 0.253);
+    box-shadow: 0px 4px 10px var(--secondary-bg);
     border-radius: 6px;
-    background-color: white;
+    background-color: var(--bg-color);
+    margin-bottom: 1.5rem;
+    @include responsive(laptop) {
+        padding-right: 6rem;
+    }
 }
 
 .search{
     border: none;
+    background-color: transparent;
 }
 
 ::placeholder{
-    color: rgb(83, 83, 83);
+    color: var(--text-color);
 }
 
 .select{
+    width: 170px;
     height: 2.8rem;
     border: none;
-    background-color: white;
-    box-shadow: 0px 4px 10px rgba(145, 145, 145, 0.253);
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    box-shadow: 0px 4px 10px var(--secondary-bg);
     border-radius: 6px;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
     font-size: .9rem;
     appearance: none;
+    @include responsive(laptop) {
+        padding-right: 6rem;
+        width: auto;
+    }
 }
