@@ -5,3 +5,10 @@ body {
     background-color: var(--bg);
     color: var(--text-color);
 }
+
+body.dark{
+    --bg-color: #2b3743;
+    --secondary-bg: rgba(32, 32, 32, 0.774);
+    --bg: #202d36;
+    --text-color: white
+}

@@ -30,9 +30,17 @@
     width: 15px;
 }
 
+.icon--invert{
+    filter: invert(1);
+}
+
 .title{
     font-size: 1.2rem;
     @include responsive(laptop) {
         font-size: 1.5rem;
         }
+}
+
+.title--small{
+    font-size: 1.3rem;
 }

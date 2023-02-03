@@ -1,0 +1,57 @@
+
+
+.country-modal{
+    display: block;
+    position: absolute;
+    background-color: var(--bg);
+    width: 100vw;
+    height: 100vh;
+    top: 90px;
+    left: 0;
+    transform: translateX(100vw);
+    transition: transform 1s;
+}
+.country-modal--show{
+    transform: translateX(0);
+}
+
+.back-button{
+    background-color: var(--bg-color);
+    box-shadow: 0px 2px 5px var(--secondary-bg);
+    width: 200px;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-left: 5rem;
+    margin-top: 3rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+}
+
+.flag{
+    width: 450px;
+    height: 300px;
+    background-color: aqua;
+    margin-top: 3rem;
+    margin-left: 5rem;
+}
+
+.country-container{
+    margin-top: 3rem;
+    display: flex;
+}
+
+
+.modal-text-container{
+    width: 600px;
+    margin-top: 3rem;
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: 1fr 1fr;
+    margin-left: 6rem;
+}
+
+.name-country{
+    grid-column: 1/3;
+}

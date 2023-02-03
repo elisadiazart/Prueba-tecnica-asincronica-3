@@ -3,21 +3,28 @@ import { root } from 'postcss';
 import '../scss/styles.scss';
 //import { sayHello } from './demo.js';
 
-const countryFlags = document.querySelectorAll('.card-flag');
 const countriesContainer = document.getElementById('countriesContainer');
-const themeMode = document.getElementById('theme-mode')
-const rootStyles = document.documentElement.style;
+const themeMode = document.getElementById('theme-mode');
+const moonIcon = document.getElementById('moon');
+const searchIcon = document.getElementById('search-icon');
+const selectItem = document.getElementById('region');
+selectItem.selectedIndex = 0;
+const searchItem = document.getElementById('search');
+const modal = document.getElementById('modal');
+
+let countriesList;
 
 const fetchData = async url => {
   const response = await fetch(url);
-  const data = response.json();
-  return data;
+  const data = await response.json();
+  countriesList = data;
+  printData(countriesList);
 };
 
-const printData = async () => {
-  const data = await fetchData('https://restcountries.com/v3.1/all');
+const printData = array => {
+  countriesContainer.innerHTML = '';
   const fragment = document.createDocumentFragment();
-  data.forEach(country => {
+  array.forEach(country => {
     const newCountry = document.createElement('div');
     newCountry.classList.add('country-card');
     const cardFlag = document.createElement('img');
@@ -25,6 +32,11 @@ const printData = async () => {
     cardFlag.src = country.flags.svg;
     const textContainer = document.createElement('div');
     textContainer.classList.add('card-text-container');
+
+    const newCountryText = document.createElement('h3');
+    newCountryText.classList.add('title--small');
+    newCountryText.textContent = country.name.common;
+
     const newPopulationText = document.createElement('h3');
     newPopulationText.classList.add('card-text', 'card-text--bold');
     newPopulationText.textContent = 'Population:';
@@ -48,22 +60,50 @@ const printData = async () => {
     newCapitalData.classList.add('card-text');
     newCapitalData.textContent = country.capital && [...country.capital];
     newCapitalText.append(newCapitalData);
+    textContainer.append(newCountryText);
     textContainer.append(newPopulationText);
     textContainer.append(newRegionText);
     textContainer.append(newCapitalText);
     newCountry.append(cardFlag);
     newCountry.append(textContainer);
+    newCountry.dataset.name = country.name.common;
     fragment.append(newCountry);
   });
   countriesContainer.append(fragment);
 };
 
-printData();
+const filterByRegion = async selectedRegion => {
+  const filteredArray = countriesList.filter(
+    country => country.region.toLowerCase() === selectedRegion.toLowerCase()
+  );
+  printData(filteredArray);
+};
+
+const filterByName = async search => {
+  const filteredArray = countriesList.filter(country =>
+    country.name.common.toLowerCase().startsWith(search.toLowerCase())
+  );
+  printData(filteredArray);
+};
+
+fetchData('https://restcountries.com/v3.1/all');
+
+selectItem.addEventListener('change', e => {
+  if (e.target.selectedIndex === 0) return;
+  filterByRegion(e.target.value);
+});
 
 themeMode.addEventListener('click', () => {
-  themeMode.dataset.mode = 'dark'
-  rootStyles.setProperty("--bg-color", "#2b3743")
-  rootStyles.setProperty("--secondary-bg", "rgba(32, 32, 32, 0.774)")
-  rootStyles.setProperty("--bg", "#202d36")
-  rootStyles.setProperty("--text-color", "white")
-})
+  document.body.classList.toggle('dark');
+  moonIcon.classList.toggle('icon--invert');
+  searchIcon.classList.toggle('icon--invert');
+});
+
+searchItem.addEventListener('keyup', e => {
+  filterByName(e.srcElement.value);
+});
+
+countriesContainer.addEventListener('click', e => {
+  console.log(e.target);
+  modal.classList.add('country-modal--show');
+});

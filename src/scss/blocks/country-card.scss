@@ -14,6 +14,8 @@
     max-height: 200px;
     min-height: 200px;
     margin: auto;
+    box-shadow: 0px 4px 10px var(--secondary-bg);
+    pointer-events: none;
 }
 
 
@@ -25,10 +27,12 @@
 
 .card-text-container{
     padding: 1.5rem;
+    pointer-events: none;
 }
 
 .card-country-name{
     font-size: 1.2rem;
+    pointer-events: none;
 }
 
 .card-text{
@@ -36,6 +40,7 @@
     font-weight: 600;
     display: flex;
     gap: .2rem;
+    pointer-events: none;
 
     &--bold{
         font-weight: 900;

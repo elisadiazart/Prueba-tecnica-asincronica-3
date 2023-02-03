@@ -15,20 +15,39 @@
     <header>
       <nav class="nav">
         <h1 class="title">Where in the world?</h1>
-        <div class="theme-mode" id="theme-mode"><img class="icon" src="assets/images/moon-solid.svg" alt="moon"><span class="theme-text">Dark Mode</span></div>
+        <div class="theme-mode" id="theme-mode"><img id="moon" class="icon" src="assets/images/moon-solid.svg" alt="moon"><span class="theme-text">Dark Mode</span></div>
       </nav>
     </header>
     <main class="main">
+      <div class="country-modal " id="modal">
+        <div class="back-button">Return</div>
+        <div class="country-container">
+          <img src="" alt="" class="flag">
+        <div class="modal-text-container">
+          <div class="name-country title"></div>
+          <div class=" card-text card-text--bold">Native Name: <span class="card-text"></span></div>
+          <div class="card-text card-text--bold">Top Level Domain:<span class="card-text"></span></div>
+          <div class="card-text card-text--bold">Population:<span class="card-text"></span></div>
+          <div class="card-text card-text--bold">Currencies:<span class="card-text"></span></div>
+          <div class="card-text card-text--bold">Region: <span class="card-text"></span></div>
+          <div class="card-text card-text--bold">Languages: <span class="card-text"></span></div>
+          <div class="card-text card-text--bold">Sub Region:<span class="card-text"></span></div>
+          <div class="card-text card-text--bold">Capital: <span class="card-text"></span></div>
+          <div class="card-text card-text--bold">Border Countries:<span class=""></span></div>
+        </div>
+        </div>
+        
+      </div>
       <form class="form">
         <div class="search-container">
-          <label class="label" for="search"><img class="icon" src="assets/images/magnifying-glass-solid.svg" alt=""></label>
+          <label class="label" for="search"><img id="search-icon" class="icon" src="assets/images/magnifying-glass-solid.svg" alt=""></label>
           <input type="text" class="search" id="search" placeholder="Search for a country">
         </div>
         <select class="select" name="region" id="region">
-          <option value="default">Filter by Region</option>
+          <option value="default" >Filter by Region</option>
           <option value="africa">Africa</option>
           <option value="asia">Asia</option>
-          <option value="america">America</option>
+          <option value="americas">Americas</option>
           <option value="europe">Europe</option>
           <option value="oceania">Oceania</option>
         </select>
