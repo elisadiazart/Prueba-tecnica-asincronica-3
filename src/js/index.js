@@ -11,6 +11,15 @@ const selectItem = document.getElementById('region');
 selectItem.selectedIndex = 0;
 const searchItem = document.getElementById('search');
 const modal = document.getElementById('modal');
+const returnButton = document.getElementById('return')
+const modalFlag = document.getElementById('modal-flag')
+const modalTitle = document.getElementById('modal-title')
+const modalNativeName = document.getElementById('native-name')
+const topLevelDomain = document.getElementById('domain')
+const modalPopulation = document.getElementById('population')
+const modalRegion = document.getElementById('region-modal');
+const modalSubregion = document.getElementById('subregion')
+const modalCapital = document.getElementById('capital')
 
 let countriesList;
 
@@ -86,6 +95,28 @@ const filterByName = async search => {
   printData(filteredArray);
 };
 
+const filterCountry = async selectedcountry => {
+  const filteredCountry = countriesList.filter(country =>
+    country.name.common.toLowerCase() ===  selectedcountry.toLowerCase())
+    
+  printCountry(filteredCountry)
+}
+
+const printCountry = async filteredCountry => {
+  const threeLetters= filteredCountry[0].cca3.toLowerCase()
+  modalFlag.src = filteredCountry[0].flags.svg
+  modalTitle.textContent = filteredCountry[0].name.common
+  filteredCountry.forEach(nameCountry => {
+    console.log(nameCountry.name.nativeName.tur)
+  })
+  topLevelDomain.textContent =`. ${filteredCountry[0].altSpellings[0].toLowerCase()}`
+  modalPopulation.textContent = filteredCountry[0].population
+  modalRegion.textContent = filteredCountry[0].region
+  modalSubregion.textContent = filteredCountry[0].subregion
+  modalCapital.textContent = filteredCountry[0].capital
+  console.log(filteredCountry[0].borders)
+}
+
 fetchData('https://restcountries.com/v3.1/all');
 
 selectItem.addEventListener('change', e => {
@@ -104,6 +135,11 @@ searchItem.addEventListener('keyup', e => {
 });
 
 countriesContainer.addEventListener('click', e => {
-  console.log(e.target);
+  filterCountry(e.target.dataset.name)
   modal.classList.add('country-modal--show');
 });
+
+
+returnButton.addEventListener('click', () => {
+  modal.classList.remove('country-modal--show')
+})

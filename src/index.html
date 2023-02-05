@@ -14,25 +14,25 @@
   <body>
     <header>
       <nav class="nav">
-        <h1 class="title">Where in the world?</h1>
+        <a href="#"><h1 class="title">Where in the world?</h1></a>
         <div class="theme-mode" id="theme-mode"><img id="moon" class="icon" src="assets/images/moon-solid.svg" alt="moon"><span class="theme-text">Dark Mode</span></div>
       </nav>
     </header>
     <main class="main">
       <div class="country-modal " id="modal">
-        <div class="back-button">Return</div>
+        <div class="back-button" id="return">Return</div>
         <div class="country-container">
-          <img src="" alt="" class="flag">
+          <img src="" alt="" class="flag" id="modal-flag">
         <div class="modal-text-container">
-          <div class="name-country title"></div>
-          <div class=" card-text card-text--bold">Native Name: <span class="card-text"></span></div>
-          <div class="card-text card-text--bold">Top Level Domain:<span class="card-text"></span></div>
-          <div class="card-text card-text--bold">Population:<span class="card-text"></span></div>
+          <div class="name-country title" id="modal-title"></div>
+          <div class=" card-text card-text--bold">Native Name: <span class="card-text" id="native-name"></span></div>
+          <div class="card-text card-text--bold">Top Level Domain:<span class="card-text" id="domain"></span></div>
+          <div class="card-text card-text--bold">Population:<span class="card-text" id="population"></span></div>
           <div class="card-text card-text--bold">Currencies:<span class="card-text"></span></div>
-          <div class="card-text card-text--bold">Region: <span class="card-text"></span></div>
+          <div class="card-text card-text--bold">Region: <span class="card-text" id="region-modal"></span></div>
           <div class="card-text card-text--bold">Languages: <span class="card-text"></span></div>
-          <div class="card-text card-text--bold">Sub Region:<span class="card-text"></span></div>
-          <div class="card-text card-text--bold">Capital: <span class="card-text"></span></div>
+          <div class="card-text card-text--bold">Sub Region:<span class="card-text" id="subregion"></span></div>
+          <div class="card-text card-text--bold">Capital: <span class="card-text" id="capital"></span></div>
           <div class="card-text card-text--bold">Border Countries:<span class=""></span></div>
         </div>
         </div>
