@@ -11,15 +11,17 @@ const selectItem = document.getElementById('region');
 selectItem.selectedIndex = 0;
 const searchItem = document.getElementById('search');
 const modal = document.getElementById('modal');
-const returnButton = document.getElementById('return')
-const modalFlag = document.getElementById('modal-flag')
-const modalTitle = document.getElementById('modal-title')
-const modalNativeName = document.getElementById('native-name')
-const topLevelDomain = document.getElementById('domain')
-const modalPopulation = document.getElementById('population')
+const returnButton = document.getElementById('return');
+const modalFlag = document.getElementById('modal-flag');
+const modalTitle = document.getElementById('modal-title');
+const modalNativeName = document.getElementById('native-name');
+const topLevelDomain = document.getElementById('domain');
+const modalPopulation = document.getElementById('population');
 const modalRegion = document.getElementById('region-modal');
-const modalSubregion = document.getElementById('subregion')
-const modalCapital = document.getElementById('capital')
+const modalSubregion = document.getElementById('subregion');
+const modalCapital = document.getElementById('capital');
+const modalCurrencies = document.getElementById('currencies');
+const modalLanguages = document.getElementById('languages');
 
 let countriesList;
 
@@ -96,26 +98,35 @@ const filterByName = async search => {
 };
 
 const filterCountry = async selectedcountry => {
-  const filteredCountry = countriesList.filter(country =>
-    country.name.common.toLowerCase() ===  selectedcountry.toLowerCase())
-    
-  printCountry(filteredCountry)
-}
+  const filteredCountry = countriesList.filter(
+    country =>
+      country.name.common.toLowerCase() === selectedcountry.toLowerCase()
+  );
+
+  printCountry(filteredCountry);
+};
 
 const printCountry = async filteredCountry => {
-  const threeLetters= filteredCountry[0].cca3.toLowerCase()
-  modalFlag.src = filteredCountry[0].flags.svg
-  modalTitle.textContent = filteredCountry[0].name.common
+  const threeLetters = filteredCountry[0].cca3.toLowerCase();
+  modalFlag.src = filteredCountry[0].flags.svg;
+  modalTitle.textContent = filteredCountry[0].name.common;
+  const allNativeName = Object.keys(filteredCountry[0].name.nativeName)[0];
   filteredCountry.forEach(nameCountry => {
-    console.log(nameCountry.name.nativeName.tur)
-  })
-  topLevelDomain.textContent =`. ${filteredCountry[0].altSpellings[0].toLowerCase()}`
-  modalPopulation.textContent = filteredCountry[0].population
-  modalRegion.textContent = filteredCountry[0].region
-  modalSubregion.textContent = filteredCountry[0].subregion
-  modalCapital.textContent = filteredCountry[0].capital
-  console.log(filteredCountry[0].borders)
-}
+    modalNativeName.textContent =
+      filteredCountry[0].name.nativeName[allNativeName].common;
+  });
+  topLevelDomain.textContent = `. ${filteredCountry[0].altSpellings[0].toLowerCase()}`;
+  modalPopulation.textContent = filteredCountry[0].population;
+  const allCurrencies = Object.keys(filteredCountry[0].currencies)[0];
+  modalCurrencies.textContent =
+    filteredCountry[0].currencies[allCurrencies].name;
+  modalRegion.textContent = filteredCountry[0].region;
+  modalSubregion.textContent = filteredCountry[0].subregion;
+  modalCapital.textContent = filteredCountry[0].capital;
+  const allLanguages = Object.values(filteredCountry[0].languages);
+  modalLanguages.textContent = allLanguages;
+  console.log(allLanguages);
+};
 
 fetchData('https://restcountries.com/v3.1/all');
 
@@ -135,11 +146,12 @@ searchItem.addEventListener('keyup', e => {
 });
 
 countriesContainer.addEventListener('click', e => {
-  filterCountry(e.target.dataset.name)
+  filterCountry(e.target.dataset.name);
   modal.classList.add('country-modal--show');
+  document.body.style.overflow = 'hidden';
 });
 
-
 returnButton.addEventListener('click', () => {
-  modal.classList.remove('country-modal--show')
-})
+  modal.classList.remove('country-modal--show');
+  document.body.style.overflow = 'auto';
+});
